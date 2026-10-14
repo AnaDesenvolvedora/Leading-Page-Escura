@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Desenvolvedora | DataDesh Soluções Digitais</title>
+    <meta name="description" content="Portfólio Ana Desenvolvedora — DataDesh Soluções Digitais. Sites, dashboards e ferramentas sob medida.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.3);
+            --mint: #10b981;
+
+            --bg: #0a0a0f;
+            --bg-2: #12121a;
+            --surface: rgba(255, 255, 255, 0.04);
+            --surface-hover: rgba(255, 255, 255, 0.07);
+            --card: #1a1a24;
+            --card-hover: #202030;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-2: rgba(255, 255, 255, 0.14);
+            --border-hover: rgba(255, 255, 255, 0.25);
+
+            --text: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.65);
+            --text-muted: rgba(255, 255, 255, 0.4);
+
+            --green: #25d366;
+            --green-dark: #128c7e;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* ===== FUNDO ===== */
+        .bg-layer {
+            position: fixed; inset: 0; z-index: 0;
+            pointer-events: none; overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.35;
+        }
+
+        .orb-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+            top: -200px; left: -100px;
+            animation: orb-float-1 24s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+            bottom: -100px; right: -100px;
+            animation: orb-float-2 28s ease-in-out infinite;
+        }
+
+        .orb-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            top: 45%; left: 40%;
+            opacity: 0.2;
+            animation: orb-float-3 32s ease-in-out infinite;
+        }
+
+        @keyframes orb-float-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(80px, 60px) scale(1.15); }
+            66% { transform: translate(40px, -40px) scale(0.9); }
+        }
+        @keyframes orb-float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, -60px) scale(1.1); }
+        }
+        @keyframes orb-float-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-60px, 40px) scale(1.2); }
+        }
+
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+        }
+
+        .particles { position: absolute; inset: 0; pointer-events: none; }
+        .particle {
+            position: absolute; border-radius: 50%; opacity: 0;
+            animation: particle-float linear infinite;
+        }
+        @keyframes particle-float {
+            0% { opacity: 0; transform: translateY(0) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-100vh) scale(1.3); }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== HERO / APRESENTAÇÃO ===== */
+        .hero {
+            padding: 70px 0 50px;
+            text-align: center;
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-photo-wrap {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 24px;
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        }
+
+        .hero-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(139, 92, 246, 0.5);
+            box-shadow: 
+                0 0 0 8px rgba(139, 92, 246, 0.1),
+                0 20px 50px rgba(139, 92, 246, 0.25);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 0 12px rgba(139, 92, 246, 0.15),
+                0 25px 60px rgba(139, 92, 246, 0.35);
+        }
+
+        .hero-photo-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(20px);
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.08); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--mint);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            background: var(--mint);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+            50% { box-shadow: 0 0 0 6px transparent; }
+        }
+
+        .hero h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--text-dim);
+            max-width: 560px;
+            margin: 0 auto 26px;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        /* ===== BOTÕES ===== */
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 8px 24px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px var(--primary-glow);
+        }
+
+        .btn-ghost {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border-2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .btn-whats {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+        }
+
+        .btn-whats:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(37, 211, 102, 0.45);
+        }
+
+        /* ===== SEÇÕES ===== */
+        .section {
+            padding: 50px 0;
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 5px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text);
+        }
+
+        /* ===== CONTATOS ===== */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .contact-item {
+            padding: 16px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-item:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .contact-ico {
+            width: 38px; height: 38px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+
+        .contact-ico-wpp { background: linear-gradient(135deg, #25d366, #128c7e); }
+        .contact-ico-email { background: linear-gradient(135deg, var(--primary), #6366f1); }
+        .contact-ico-insta { background: linear-gradient(135deg, #e1306c, #f77737); }
+        .contact-ico-git { background: linear-gradient(135deg, #24292e, #57606a); }
+
+        .contact-txt {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .contact-lbl {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .contact-val {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ===== LISTA DE PROJETOS — CARDS MAIS CLAROS ===== */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .project-item {
+            padding: 20px 22px;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(139, 92, 246, 0.08), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .project-item:hover::before { transform: scaleY(1); }
+        .project-item:hover::after { opacity: 1; }
+
+        .project-item:hover {
+            background: var(--card-hover);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateX(6px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.15);
+        }
+
+        .project-emoji {
+            width: 46px; height: 46px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.15));
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            flex-shrink: 0;
+            transition: transform 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-item:hover .project-emoji {
+            transform: scale(1.1) rotate(-8deg);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25);
+        }
+
+        .project-content {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-name {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .project-cat {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: rgba(6, 182, 212, 0.12);
+            color: var(--accent);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+        }
+
+        .project-desc {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* ===== CTA "CLIQUE AQUI" — CLARO E COM EFEITO ===== */
+        .project-cta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+            position: relative;
+            z-index: 1;
+            padding: 8px 14px;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.2px;
+        }
+
+        .project-cta::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.5), rgba(6, 182, 212, 0.5));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s;
+            filter: blur(8px);
+        }
+
+        .project-item:hover .project-cta {
+            color: white;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-item:hover .project-cta::before { opacity: 1; }
+
+        .project-arrow {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block;
+        }
+
+        .project-item:hover .project-arrow { 
+            transform: translateX(4px);
+        }
+
+        /* ===== CATÁLOGO ===== */
+        .catalog-box {
+            padding: 40px 30px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .catalog-box::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.2), transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15), transparent 50%);
+            pointer-events: none;
+        }
+
+        .catalog-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .catalog-emoji {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .catalog-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .catalog-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            max-width: 460px;
+            margin: 0 auto 22px;
+            line-height: 1.6;
+        }
+
+        .catalog-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px var(--primary-glow);
+        }
+
+        .catalog-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px var(--primary-glow);
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .footer-logo {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: white;
+            padding: 3px;
+        }
+
+        .footer-logo-fallback {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .footer-brand-text {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .footer-brand-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .footer-desc {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            line-height: 1.65;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .footer-col a,
+        .footer-col p {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-heart {
+            color: #ec4899;
+            animation: heart-beat 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.25); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            text-decoration: none;
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 998;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(-8deg);
+            box-shadow: 0 16px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 20px;
+            border: 2px solid rgba(37, 211, 102, 0.4);
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 800px) {
+            .hero { padding: 50px 0 40px; }
+            .hero-photo-wrap { width: 120px; height: 120px; }
+            .hero-photo { width: 120px; height: 120px; }
+            .section { padding: 40px 0; }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-desc { max-width: 100%; }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero h1 { font-size: 1.4rem; }
+            .hero-sub { font-size: 0.92rem; }
+            .btn { padding: 11px 18px; font-size: 0.82rem; }
+            .project-item {
+                padding: 16px;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .project-emoji {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .project-name { font-size: 0.94rem; }
+            .project-desc { font-size: 0.78rem; }
+            .project-cta {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                width: 100%;
+                justify-content: center;
+                margin-top: 6px;
+            }
+            .catalog-box { padding: 30px 22px; }
+            .whatsapp-float {
+                bottom: 18px;
+                right: 18px;
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 5px;
+            border: 2px solid var(--bg);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.5); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-layer">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+        <div class="bg-grid"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- HERO / APRESENTAÇÃO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-photo-wrap">
+                <img 
+                    src="https://raw.githubusercontent.com/datadeshsolucoes-design/Servicos-digitais/main/foto%20(1).jpg" 
+                    alt="Ana Desenvolvedora" 
+                    class="hero-photo"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:3.5rem;border:3px solid rgba(139,92,246,0.5);&quot;>👩‍💻</div>';">
+            </div>
+
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>Disponível para novos projetos</span>
+            </div>
+
+            <h1>
+                Olá, sou <span class="gradient">Ana Desenvolvedora</span>
+            </h1>
+
+            <p class="hero-sub">
+                Resolvo problemas com ferramentas digitais sob medida. Sites, dashboards, planilhas inteligentes e sistemas personalizados — tudo criado pela DataDesh Soluções Digitais.
+            </p>
+
+            <div class="btn-row">
+                <a href="https://servicos-digitais.datadeshsolucoes.workers.dev/" target="_blank" class="btn btn-primary">
+                    🌐 Visitar meu site
+                </a>
+                <a href="#projetos" class="btn btn-ghost">
+                    👀 Ver projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATOS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label">Fale comigo</div>
+                <h2 class="section-title">Contatos rápidos</h2>
+            </div>
+
+            <div class="contacts-grid">
+                <a href="https://wa.me/5531984987116" target="_blank" class="contact-item">
+                    <div class="contact-ico contact-ico-wpp">💬</div>
+                    <div class="contact-txt">
+                        <div class="contact-lbl">WhatsApp</div>
+                        <div class="contact-val">(31) 98498-7116</div>
+                    </div>
+                </a>
+
+                <a href="mailto:datadshsolucoes@gmail.com" class="contact-item">
+                    <div class="contact-ico contact-ico-email">✉️</div>
+                    <div class="contact-txt">
+                        <div class="contact-lbl">E-mail</div>
+                        <div class="contact-val">datadshsolucoes@gmail.com</div>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/datadeshsolucoesdigitais" target="_blank" class="contact-item">
+                    <div class="contact-ico contact-ico-insta">📷</div>
+                    <div class="contact-txt">
+                        <div class="contact-lbl">Instagram</div>
+                        <div class="contact-val">@datadeshsolucoesdigitais</div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/AnaDesenvolvedora" target="_blank" class="contact-item">
+                    <div class="contact-ico contact-ico-git">💻</div>
+                    <div class="contact-txt">
+                        <div class="contact-lbl">GitHub</div>
+                        <div class="contact-val">Ana Desenvolvedora</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section class="section" id="projetos">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label">Portfólio</div>
+                <h2 class="section-title">Projetos que já criei</h2>
+            </div>
+
+            <div class="projects-list" id="projectsList">
+                <!-- Preenchido via JS pra adicionar efeito spotlight -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="section">
+        <div class="container">
+            <div class="catalog-box">
+                <div class="catalog-content">
+                    <span class="catalog-emoji">📚</span>
+                    <h2 class="catalog-title">Catálogo completo de serviços</h2>
+                    <p class="catalog-desc">
+                        Todos os serviços da DataDesh Soluções Digitais organizados em um só lugar. Descubra qual solução combina com seu desafio.
+                    </p>
+                    <a href="https://datadeshsolucoes-design.github.io/catalago-sem-precos-DataDesh/" target="_blank" class="catalog-btn">
+                        Ver Catálogo Completo →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-col">
+                    <div class="footer-brand">
+                        <img 
+                            src="https://raw.githubusercontent.com/datadeshsolucoes-design/Servicos-digitais/main/logo.jpeg" 
+                            alt="DataDesh" 
+                            class="footer-logo"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="footer-logo-fallback" style="display: none;">D</div>
+                        <div>
+                            <div class="footer-brand-text">DataDesh Soluções Digitais</div>
+                            <div class="footer-brand-sub">por Ana Desenvolvedora</div>
+                        </div>
+                    </div>
+                    <p class="footer-desc">
+                        Transformo problemas em ferramentas digitais sob medida. Sites, dashboards, sistemas e automações que resolvem de verdade.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <a href="https://wa.me/5531984987116" target="_blank">📱 (31) 98498-7116</a>
+                    <a href="mailto:datadshsolucoes@gmail.com">✉️ datadshsolucoes@gmail.com</a>
+                    <a href="https://instagram.com/datadeshsolucoesdigitais" target="_blank">📷 @datadeshsolucoesdigitais</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Informações</h4>
+                    <p>🏢 DataDesh Soluções Digitais</p>
+                    <p>📄 CNPJ: 66.884.261/0001-20</p>
+                    <a href="https://github.com/AnaDesenvolvedora" target="_blank">💻 github.com/AnaDesenvolvedora</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2025 DataDesh Soluções Digitais · Todos os direitos reservados</span>
+                <span>Feito com <span class="footer-heart">❤</span> para resolver problemas</span>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5531984987116" target="_blank" class="whatsapp-float" title="Falar no WhatsApp">💬</a>
+
+    <script>
+        // ===== PROJETOS =====
+        const PROJECTS = [
+            {
+                url: 'https://anadesenvolvedora.github.io/prototipositeclinica/#contato',
+                emoji: '🌐',
+                name: 'Site Simples',
+                cat: 'Site',
+                desc: 'Site institucional elegante para clínica, com agendamento direto via WhatsApp.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/Bellas-Pizzaria/#home',
+                emoji: '🍕',
+                name: 'Cardápio Virtual Inteligente',
+                cat: 'Cardápio',
+                desc: 'Cardápio interativo com carrinho e pedido automático enviado via WhatsApp.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/Convite-Digital/#detalhes',
+                emoji: '🎉',
+                name: 'Convite Especial para Eventos',
+                cat: 'Evento',
+                desc: 'Convite digital com contagem regressiva, confirmação de presença e exportação em Excel.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/Organizador-de-Festas-e-Eventos/#confirmar',
+                emoji: '🥩',
+                name: 'Lista Churrasco da Família',
+                cat: 'Colaborativo',
+                desc: 'Organizador colaborativo onde cada um escolhe o que trazer, sem duplicar itens.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/Lista-de-Presentes/#contato',
+                emoji: '🎁',
+                name: 'Lista de Presentes Virtual',
+                cat: 'Lista',
+                desc: 'Lista inteligente com cotas coletivas — ninguém dá presente repetido.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/controledeferramentassaude/',
+                emoji: '🔗',
+                name: 'Organização de Links',
+                cat: 'Organização',
+                desc: 'Central de ferramentas e links essenciais, tudo organizado em um só lugar.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/painelcensoibgedistritoeldorado/',
+                emoji: '📊',
+                name: 'Painel de Dados IBGE',
+                cat: 'Dashboard',
+                desc: 'Dashboard interativo com dados do Censo IBGE do Distrito Eldorado.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/ociconsolidado/',
+                emoji: '📈',
+                name: 'Painel Executivo OCI',
+                cat: 'Executivo',
+                desc: 'Painel consolidado com visão executiva dos indicadores OCI.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/saudecontatosubs/',
+                emoji: '📞',
+                name: 'Lista Telefônica Virtual',
+                cat: 'Contatos',
+                desc: 'Agenda telefônica completa da rede de saúde, com busca rápida e intuitiva.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/saudepaginafluxodaregula-o/',
+                emoji: '📄',
+                name: 'Resumo de Documentos',
+                cat: 'Documentos',
+                desc: 'Página com fluxo da regulação em saúde — toda a informação centralizada.'
+            },
+            {
+                url: 'https://portifolio.datadeshsolucoes.workers.dev/',
+                emoji: '🎨',
+                name: 'Portfólio Virtual',
+                cat: 'Portfólio',
+                desc: 'Vitrine completa com todos os serviços da DataDesh Soluções Digitais.'
+            },
+            {
+                url: 'https://curriculo.datadeshsolucoes.workers.dev/',
+                emoji: '📝',
+                name: 'Currículo Virtual',
+                cat: 'Currículo',
+                desc: 'Currículo digital moderno e interativo da Ana Desenvolvedora.'
+            },
+            {
+                url: 'https://anadesenvolvedora.github.io/Ferramenta-OCI/',
+                emoji: '🔐',
+                name: 'Ferramenta Inteligente de Análise',
+                cat: 'Sistema',
+                desc: 'Sistema completo com login, senha, dashboards e lógica personalizada.'
+            },
+            {
+                url: 'https://docs.google.com/spreadsheets/d/12LOIIdR6bSkS1vV2o6984K1UvUsMGrHIg6z0xcSCpAs/edit?gid=1423732641#gid=1423732641',
+                emoji: '📑',
+                name: 'Painel Automatizado em Planilhas',
+                cat: 'Planilha',
+                desc: 'Automação completa no Google Sheets com fórmulas, scripts e dashboards.'
+            }
+        ];
+
+        function renderProjects() {
+            const list = document.getElementById('projectsList');
+            list.innerHTML = PROJECTS.map((p, i) => `
+                <a href="${p.url}" target="_blank" class="project-item" style="animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.04}s both;">
+                    <div class="project-emoji">${p.emoji}</div>
+                    <div class="project-content">
+                        <div class="project-name">
+                            ${p.name}
+                            <span class="project-cat">${p.cat}</span>
+                        </div>
+                        <div class="project-desc">${p.desc}</div>
+                    </div>
+                    <div class="project-cta">
+                        <span>Clique aqui</span>
+                        <span class="project-arrow">→</span>
+                    </div>
+                </a>
+            `).join('');
+
+            // Efeito spotlight (radial gradiente seguindo o mouse)
+            document.querySelectorAll('.project-item').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mx', x + '%');
+                    card.style.setProperty('--my', y + '%');
+                });
+            });
+        }
+
+        // Partículas
+        function initParticles() {
+            const c = document.getElementById('particles');
+            if (!c) return;
+            const colors = ['#8b5cf6', '#06b6d4', '#ec4899', '#10b981'];
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 3 + 1.5;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.bottom = '-10px';
+                p.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                p.style.animationDelay = (Math.random() * 15) + 's';
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                c.appendChild(p);
+            }
+        }
+
+        renderProjects();
+        initParticles();
+    </script>
+</body>
+</html>
